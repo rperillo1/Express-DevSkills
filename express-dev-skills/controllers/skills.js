@@ -8,7 +8,8 @@ function index(req, res) {
 
 function show(req, res) {
     res.render('skills/show', {
-        skill: skillsDB.getOne(req.params.id)
+        skill: skillsDB.getOne(req.params.id),
+        skillNum: skillsDB.findIndex(req.params.id)
     });
 };
 

@@ -6,7 +6,8 @@ const skills = [
 
 module.exports = {
     getAll,
-    getOne
+    getOne,
+    findIndex
 }
 
 function getAll(){
@@ -15,4 +16,8 @@ function getAll(){
 
 function getOne(id){
     return skills.find(skill => skill.id === parseInt(id));
+}
+
+function findIndex(id) {
+    return skills.findIndex(skill => skill.id === parseInt(id)) + 1;
 }
