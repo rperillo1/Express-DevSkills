@@ -13,7 +13,39 @@ function show(req, res) {
     });
 };
 
+function edit(req, res) {
+    const skill = skillsDB.getOne(req.params.id)
+    res.render('skills/edit', { skill })
+}
+
+function update(req, res) {
+    req.body.done = !!req.body.done;
+    skillsDB.update(req.params.id, req.body)
+    res.redirect(`/skills/${req.params.id}`);
+}
+
+
+function newSkill(req, res) {
+    res.render('skills/new');
+}
+
+function create(req, res) {
+    skillsDB.create(req.body);
+    res.redirect('/skills');
+}
+
+
+function deleteSkill(req, res) {
+    skillsDB.deleteOne(req.params.id);
+    res.redirect('/skills');
+}
+
 module.exports = {
     index,
-    show
+    show,
+    edit,
+    update,
+    new: newSkill,
+    create,
+    delete: deleteSkill
 }
